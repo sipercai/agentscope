@@ -58,7 +58,8 @@ def init(
             to the AgentScope Studio's tracing endpoint.
         enable_tracing (`bool`, optional):
             Whether to enable tracing. Defaults to True. Set to False to
-            disable tracing even when `studio_url` or `tracing_url` is provided.
+            disable tracing even when `studio_url` or `tracing_url` is
+            provided.
     """
 
     from . import _config
@@ -106,7 +107,9 @@ def init(
         if tracing_url:
             endpoint = tracing_url
         else:
-            endpoint = studio_url.strip("/") + "/v1/traces" if studio_url else None
+            endpoint = (
+                studio_url.strip("/") + "/v1/traces" if studio_url else None
+            )
 
         if endpoint:
             from .tracing import setup_tracing
